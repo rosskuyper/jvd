@@ -39,7 +39,8 @@
 
 	<footer>
 		<p>Copyright <?php echo date('Y'); ?> - JVD Translations</p>
-		<p><a href="http://piandcake.com" target="_blank"><img src="/img/piandcake.png" alt="piandcake" width="155" height="33"></a></p>
+		<p class="creds">Photo by <a href="http://www.ericnathan.com/" target="_blank">Eric Nathan</a> and Icons by <a target="_blank" href="http://icons8.com/">Icons8</a></p>
+		<p><a class="piandcake" href="http://piandcake.com" target="_blank" title="piandcake"></a></p>
 	</footer>
 
 	<?php foreach ($sections as $index => $section) : ?>

@@ -1,11 +1,11 @@
 <section class="clearfix">
 	<div class="left">
-		<h5><?= $lang->get('quals.content.quals.title'); ?></h5>
-		<p><?= $lang->get('quals.content.quals.para'); ?></p>
+		<h5><?= $lang->get('quals.quals.title'); ?></h5>
+		<p><?= $lang->get('quals.quals.content'); ?></p>
 	</div>
 	<div class="right">
-		<h5><?= $lang->get('quals.content.creds.title'); ?></h5>
-		<p><?= $lang->get('quals.content.creds.para'); ?></p>
+		<h5><?= $lang->get('quals.creds.title'); ?></h5>
+		<p><?= $lang->get('quals.creds.content'); ?></p>
 	</div>
 </section>
 
@@ -13,28 +13,18 @@
 
 // External links
 echo $app->view->fetch('partials/link-list.php', [
-	'titleName' => 'quals.content.links.title',
-	'itemName'  => 'quals.content.links.items',
+	'titleName' => 'quals.links.title',
+	'itemName'  => 'quals.links.items',
 ]);
 
-?>
-
-<section class="clearfix">
-	<h5><?= $lang->get('quals.content.clients.title'); ?></h5>
-
-	<?php foreach ($lang->get('quals.content.clients.para') as $index => $content) : ?>
-		<div class="<?= $index % 2 === 0 ? 'left' : 'right'; ?>">
-			<p><?= $content; ?></p>
-		</div>
-	<?php endforeach; ?>
-</section>
-
-<?php
+// Clients
+echo $app->view->fetch('partials/dual-columns.php', [
+	'titleName' => 'quals.clients.title',
+	'itemName'  => 'quals.clients.content',
+]);
 
 // Samples
 echo $app->view->fetch('partials/link-list.php', [
-	'titleName' => 'quals.content.samples.title',
-	'itemName'  => 'quals.content.samples',
+	'titleName' => 'quals.samples.title',
+	'itemName'  => 'quals.samples',
 ]);
-
-?>

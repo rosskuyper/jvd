@@ -29,9 +29,30 @@ $homeRoute = function($lang = null) use ($app) {
 		$app->lang->setLang($lang);
 
 	$app->render('home.php', [
-		'lang'     => $app->lang->getLangData(),
-		'sections' => ['about','quals','services','client','faq','contact'],
-		'app'      => $app,
+		'lang'      => $app->lang->getLangData(),
+		'sections'  => ['about','quals','services','client','faq','contact'],
+		'app'       => $app,
+		// A util - could benefit from being put into a lib.
+		'columnise' => function($arr){
+			// ensure we get just the values
+			$arr        = array_values($arr);
+			$count      = count($arr);
+			$columnised = [];
+
+			// Loop through two at a time.
+			for ($i = 0; $i < $count; $i = $i+2) {
+				$next = [];
+
+				for ($j = $i; $j <= $i + 1; $j++) {
+					if (isset($arr[$j]))
+						$next[] = $arr[$j];
+				}
+
+				$columnised[] = $next;
+			}
+
+			return $columnised;
+		},
 	]);
 };
 

@@ -157,6 +157,7 @@ h2 {
 			left:0;
 			background-repeat: no-repeat;
 			background-position: 50% 0;
+			background-size: 50px 50px;
 			opacity: 0.7;
 			@include std-transition(opacity);
 		}
@@ -222,8 +223,25 @@ footer {
 	font-size: 16px;
 	padding-bottom: 50px;
 
+	a.piandcake {
+		display: block;
+		height: 33px;
+		width:155px;
+		margin: 0 auto;
+		background:url('img/piandcake.png') no-repeat;
+	}
+
 	p {
-		margin-bottom: 15px;
+		margin-bottom: 5px;
+
+		&.creds {
+			font-size: 14px;
+			margin-bottom: 15px;
+
+			a {
+				color: #EB8C79;
+			}
+		}
 	}
 }
 
@@ -255,6 +273,23 @@ footer {
 		}
 	}
 
+	&.red {
+		h4 {
+			color: #ED8E7B;
+		}
+
+		section.warning {
+			border: 1px solid #ED8E7B;
+			padding: 30px;
+		}
+	}
+
+	&.blue {
+		h4 {
+			color: #68A3C1;
+		}
+	}
+
 	h5 {
 		@include quest;
 		text-align: left;
@@ -267,11 +302,7 @@ footer {
 
 	.content {
 		.left, .right {
-			color: #AAAAAA;
 			width: 420px;
-			font-size: 16px;
-			line-height: 1.6;
-			@include quest;
 		}
 
 		.left {
@@ -283,8 +314,12 @@ footer {
 		}
 
 		p {
+			color: #AAAAAA;
+			font-size: 16px;
+			line-height: 1.6;
 			margin-bottom: 25px;
 			text-align: left;
+			@include quest;
 
 			&:last-child {
 				margin-bottom: 0;
@@ -307,6 +342,29 @@ footer {
 					padding-bottom: 0;
 				}
 			}
+
+			&.testimonies {
+				padding-bottom: 20px;
+
+				div.left, div.right {
+					margin-bottom: 20px;
+				}
+			}
+		}
+
+		blockquote {
+			color: #AAAAAA;
+			font-size: 16px;
+			text-align: left;
+			@include quest;
+		}
+
+		cite {
+			display: block;
+			text-align: left;
+			color: #312C33;
+			font-size: 12px;
+			@include quest;
 		}
 	}
 
@@ -381,4 +439,27 @@ footer {
 			}
 		}
 	}
+}
+
+
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.3),
+	only screen and (-o-min-device-pixel-ratio: 13/10),
+	only screen and (min-resolution: 120dpi) {
+		.main {
+			.card-about:after {background-image: url('img/icon/about@2x.png');}
+			.card-quals:after {background-image: url('img/icon/quals@2x.png');}
+			.card-services:after {background-image: url('img/icon/services@2x.png');}
+			.card-client:after {background-image: url('img/icon/clients@2x.png');}
+			.card-faq:after {background-image: url('img/icon/faq@2x.png');}
+			.card-contact:after {background-image: url('img/icon/contact@2x.png');}
+		}
+
+		footer {
+			a.piandcake {
+				height: 32px;
+				width:152px;
+				background:url('img/piandcake@2x.png') no-repeat;
+				background-size: 152px 32px;
+			}
+		}
 }
