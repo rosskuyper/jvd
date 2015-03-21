@@ -13,7 +13,9 @@
 	<h5><?= $lang->get('quals.content.links.title'); ?></h5>
 
 	<?php foreach ($lang->get('quals.content.links.items') as $index => $link) : ?>
-		<p class="<?= $index % 2 === 0 ? 'left' : 'right'; ?>"><?= $link; ?></p>
+		<div class="<?= $index % 2 === 0 ? 'left' : 'right'; ?>">
+			<p><?= $link; ?></p>
+		</div>
 	<?php endforeach; ?>
 </section>
 
@@ -21,14 +23,33 @@
 	<h5><?= $lang->get('quals.content.clients.title'); ?></h5>
 
 	<?php foreach ($lang->get('quals.content.clients.para') as $index => $content) : ?>
-		<p class="<?= $index % 2 === 0 ? 'left' : 'right'; ?>"><?= $content; ?></p>
+		<div class="<?= $index % 2 === 0 ? 'left' : 'right'; ?>">
+			<p><?= $content; ?></p>
+		</div>
 	<?php endforeach; ?>
 </section>
 
 <section class="clearfix">
 	<h5><?= $lang->get('quals.content.samples.title'); ?></h5>
 
-	<?php foreach ($lang->get('quals.content.samples') as $index => $link) : ?>
-		<p class="<?= $index % 2 === 0 ? 'left' : 'right'; ?>"><?= $link; ?></p>
+	<?php
+	$samples = $lang->get('quals.content.samples');
+	foreach ($samples as $index => $link) : ?>
+		<?php $class = $index % 2 === 0 ? 'left' : 'right'; ?>
+
+		<?php if ($class === 'left') : ?>
+			<div class="clearfix">
+		<?php endif; ?>
+
+			<p class="<?= $class; ?>"><?= $link; ?></p>
+
+		<?php if ($class === 'right') : ?>
+			</div>
+		<?php endif; ?>
 	<?php endforeach; ?>
+
+	<?php if (count($samples) % 2 === 1) : // Close the last tag ?>
+		</div>
+	<?php endif; ?>
+
 </section>
