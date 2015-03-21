@@ -1,0 +1,9 @@
+{
+	"quotmark"      : false,
+	"devel"         : true,
+	"jquery"        : true,
+	"strict"        : true,
+	"globals"       : {
+		"module" : true
+	}
+}

@@ -1,0 +1,378 @@
+/**
+ * Fonts and other global things
+ */
+body {
+	background: #F0EAE3 url('img/hero.jpg') no-repeat 50% 0;
+	font-size: 14px;
+	line-height: 1.4;
+	color: #333333;
+	-webkit-font-smoothing: antialiased;
+
+	&.dialog-abs {
+		.hide-in-dialog-abs {
+			display: none;
+		}
+	}
+}
+
+a, a:link, a:visited {
+	color: #333333;
+}
+
+.hero {
+	position: relative;
+	height: 540px;
+	padding-top: 135px;
+	width:1100px;
+	margin: 0 auto;
+
+	&:after {
+		background:url('img/down-arrow.png') no-repeat;
+		height: 16px;
+		width: 25px;
+		position: absolute;
+		content: " ";
+		bottom:40px;
+		left:50%;
+		margin-left: -12px;
+	}
+
+	button {
+		display: block;
+		margin: 0 auto;
+		border:none;
+		padding: 0;
+		width: 200px;
+		line-height: 46px;
+		background: #92BCD3;
+		color: #FFFFFF;
+		font-size: 14px;
+		text-transform: uppercase;
+		@include std-transition(all);
+		@include border-radius(23px);
+		@include mont;
+
+		&:hover {
+			background:#A8C9DC;
+		}
+	}
+
+	a.lang-select {
+		position: absolute;
+		top: 30px;
+		right: 0;
+		font-size: 10px;
+		line-height: 11px;
+		color: #FFFFFF;
+		text-transform: uppercase;
+		padding: 0 0 0 20px;
+		@include mont;
+		@include std-transition(all);
+
+		&.lang-en {
+			background:url('img/flag-en.png') no-repeat;
+		}
+
+		&.lang-fr {
+			background:url('img/flag-fr.png') no-repeat;
+		}
+	}
+}
+
+h1 {
+	text-align: center;
+	font-size: 80px;
+	font-weight: 700;
+	color: #FFFFFF;
+	margin: 0 0 15px;
+	position: relative;
+	line-height: 80px;
+	z-index: 5;
+	@include mont;
+	@include std-transition(all);
+
+	span {
+		position: relative;
+		z-index: 5;
+	}
+
+	&:after {
+		content: " ";
+		height:6px;
+		width:900px;
+		left:50%;
+		top:44px;
+		margin-left: -450px;
+		position: absolute;
+		z-index: 1;
+		background:#A8CADC;
+		opacity: 0.3;
+		@include std-transition(all);
+	}
+}
+
+h2 {
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 30px;
+	margin-bottom: 50px;
+	@include quest;
+	@include std-transition(all);
+}
+
+.main {
+	width: 1100px;
+	margin: 55px auto 50px;
+
+	.card {
+		width: 340px;
+		background:#FFFFFF;
+		float:left;
+		padding:120px 40px 10px;
+		margin-right: 40px;
+		margin-bottom: 40px;
+		position: relative;
+		cursor: pointer;
+		@include std-transition(box-shadow);
+		@include single-box-shadow(0,0,0,0,rgba(0,0,0,0));
+
+		&:hover {
+			@include single-box-shadow(0,0,2px,1px,rgba(0,0,0,0.15));
+
+			button {
+				opacity: 1;
+			}
+
+			&:after {
+				opacity: 1;
+			}
+		}
+
+		&:after {
+			position: absolute;
+			content: " ";
+			height: 50px;
+			width: 100%;
+			top: 40px;
+			left:0;
+			background-repeat: no-repeat;
+			background-position: 50% 0;
+			opacity: 0.7;
+			@include std-transition(opacity);
+		}
+
+		&:nth-of-type(3n) {
+			margin-right: 0;
+		}
+
+		h3 {
+			text-transform: uppercase;
+			text-align: center;
+			color: #312D33;
+			line-height: 1.2;
+			margin-bottom: 20px;
+			@include mont;
+		}
+
+		p {
+			text-align: center;
+			line-height: 1.6;
+			color: #AAAAAA;
+			margin-bottom: 30px;
+			@include quest;
+		}
+
+		button {
+			border:none;
+			background:transparent;
+			padding:0;
+			font-size: 11px;
+			text-transform: uppercase;
+			font-weight: 700;
+			opacity: 0.7;
+			@include open;
+			@include std-transition(opacity);
+
+			&.purple {
+				color: #9C76A3;
+			}
+
+			&.red {
+				color: #EC8D7A;
+			}
+
+			&.blue {
+				color: #68A3C1;
+			}
+		}
+	}
+
+	.card-about:after {background-image: url('img/icon/about.png');}
+	.card-quals:after {background-image: url('img/icon/quals.png');}
+	.card-services:after {background-image: url('img/icon/services.png');}
+	.card-client:after {background-image: url('img/icon/clients.png');}
+	.card-faq:after {background-image: url('img/icon/faq.png');}
+	.card-contact:after {background-image: url('img/icon/contact.png');}
+}
+
+footer {
+	@include quest;
+	text-align: center;
+	color: #B6B6B6;
+	font-size: 16px;
+	padding-bottom: 50px;
+
+	p {
+		margin-bottom: 15px;
+	}
+}
+
+.dialog {
+	h3 {
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #312D33;
+		margin-bottom: 5px;
+		@include mont;
+	}
+
+	h4 {
+		text-transform: uppercase;
+		font-style: italic;
+		font-weight: 700;
+		font-size: 10px;
+		margin-bottom: 40px;
+		@include open;
+	}
+
+	&.purple {
+		h4 {
+			color: #9A76A3;
+		}
+
+		a {
+			color: #AB8AB0;
+		}
+	}
+
+	h5 {
+		@include quest;
+		text-align: left;
+		color: #312C33;
+		font-size: 16px;
+		margin-bottom: 15px;
+		padding-bottom: 3px;
+		border-bottom: 1px solid #EFEFEF;
+	}
+
+	.content {
+		.left, .right {
+			color: #AAAAAA;
+			width: 420px;
+			font-size: 16px;
+			line-height: 1.6;
+			@include quest;
+		}
+
+		.left {
+			float:left;
+		}
+
+		.right {
+			float: right;
+		}
+
+		p {
+			margin-bottom: 25px;
+			text-align: left;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&.left, &.right {
+				margin-bottom: 15px;
+			}
+		}
+
+		section {
+			margin-bottom: 40px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	a {
+		text-decoration: underline;
+	}
+
+	.dialog__content {
+		background-repeat: no-repeat;
+		background-position: 50% 50px;
+		padding: 120px 90px 50px;
+		position: relative;
+	}
+
+	&.about .dialog__content {background-image: url('img/icon/about.png');}
+	&.quals .dialog__content {background-image: url('img/icon/quals.png');}
+	&.services .dialog__content {background-image: url('img/icon/services.png');}
+	&.client .dialog__content {background-image: url('img/icon/clients.png');}
+	&.faq .dialog__content {background-image: url('img/icon/faq.png');}
+	&.contact .dialog__content {background-image: url('img/icon/contact.png');}
+
+	.tools {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+
+		button {
+			display: block;
+			border:1px solid #E8E8E8;
+			background:transparent;
+			padding: 0;
+			height: 34px;
+			width: 34px;
+			float:right;
+			position: relative;
+
+			&:hover:after {
+				opacity: 0.6;
+			}
+
+			&:after {
+				position: absolute;
+				content: " ";
+				top:0;
+				left:0;
+				height: 100%;
+				width: 100%;
+				opacity: 1;
+				@include std-transition(opacity);
+			}
+
+			&.prev {
+				border-right:none;
+
+				&:after {
+					background:url('img/prev.png') no-repeat 50% 50%;
+				}
+			}
+
+			&.next {
+				&:after {
+					background:url('img/next.png') no-repeat 50% 50%;
+				}
+			}
+
+			&.close {
+				margin-left: 10px;
+
+				&:after {
+					background:url('img/close.png') no-repeat 50% 50%;
+				}
+			}
+		}
+	}
+}

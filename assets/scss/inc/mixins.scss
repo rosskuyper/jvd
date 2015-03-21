@@ -1,0 +1,15 @@
+@mixin std-transition($property: all) {
+	@include transition(.4s $property ease-in-out);
+}
+
+@mixin mont() {
+	font-family: 'Montserrat', sans-serif;
+}
+
+@mixin quest() {
+	font-family: 'Questrial', sans-serif;
+}
+
+@mixin open() {
+	font-family: 'Open Sans', sans-serif;
+}

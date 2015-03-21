@@ -1,0 +1,16 @@
+{
+	"name": "rosskuyper/jvd",
+	"description": "Website for JVD Translations",
+	"keywords": ["JVD", "Translations"],
+	"license": "proprietary",
+	"type": "project",
+	"require": {
+		"slim/slim": "~2.6"
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"autoload": {
+		"psr-4": {"Jvd\\": "app/"}
+	}
+}

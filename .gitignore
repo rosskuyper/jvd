@@ -1,0 +1,15 @@
+# Node / npm
+node_modules/
+.sass-cache/
+
+# Composer
+vendor/
+
+# Slim app debug mode flag
+app/debug
+
+# This image cannot be hosted on github
+public/css/img/hero.jpg
+
+# Copyright content
+app/Lang/
