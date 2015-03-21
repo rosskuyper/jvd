@@ -74,6 +74,7 @@
 
 @media (min-width: 1649px) {
 	.hero {
+		background-image: url('img/hero/2400.jpg');
 		background-size: 100% auto;
 	}
 }
@@ -174,9 +175,14 @@
 			float: none;
 			margin-left: auto;
 			margin-right: auto;
+			@include single-box-shadow(0,0,2px,1px,rgba(0,0,0,0.15));
 
 			&:nth-of-type(3n) {
 				margin-right: auto;
+			}
+
+			button, &:after {
+				opacity: 1;
 			}
 		}
 	}

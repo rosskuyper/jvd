@@ -143,11 +143,7 @@ h2 {
 		&:hover {
 			@include single-box-shadow(0,0,2px,1px,rgba(0,0,0,0.15));
 
-			button {
-				opacity: 1;
-			}
-
-			&:after {
+			button, &:after {
 				opacity: 1;
 			}
 		}
