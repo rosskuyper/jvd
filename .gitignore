@@ -9,7 +9,8 @@ vendor/
 app/debug
 
 # This image cannot be hosted on github
-public/css/img/hero.jpg
+public/css/img/hero/
 
 # Copyright content
 app/Lang/
+push

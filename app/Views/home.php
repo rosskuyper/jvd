@@ -14,15 +14,17 @@
 </head>
 <body>
 	<div class="hero">
-		<h1><span>Jennifer van Dorsten</span></h1>
-		<h2><?= $lang->get('subtitle'); ?></h2>
-		<p><button type="button">Hire me today</button></p>
+		<div>
+			<h1><span>Jennifer van Dorsten</span></h1>
+			<h2><?= $lang->get('subtitle'); ?></h2>
+			<p><button type="button">Hire me today</button></p>
 
-		<?php if ($lang->get('lang') === 'en') : ?>
-			<a href="/fr" class="lang-select lang-fr">Français</a>
-		<?php else : ?>
-			<a href="/en" class="lang-select lang-en">English</a>
-		<?php endif; ?>
+			<?php if ($lang->get('lang') === 'en') : ?>
+				<a href="/fr" class="lang-select lang-fr">Français</a>
+			<?php else : ?>
+				<a href="/en" class="lang-select lang-en">English</a>
+			<?php endif; ?>
+		</div>
 	</div>
 
 	<div class="main clearfix" role="main">

@@ -9,15 +9,15 @@
 	</div>
 </section>
 
-<section class="clearfix">
-	<h5><?= $lang->get('quals.content.links.title'); ?></h5>
+<?php
 
-	<?php foreach ($lang->get('quals.content.links.items') as $index => $link) : ?>
-		<div class="<?= $index % 2 === 0 ? 'left' : 'right'; ?>">
-			<p><?= $link; ?></p>
-		</div>
-	<?php endforeach; ?>
-</section>
+// External links
+echo $app->view->fetch('partials/link-list.php', [
+	'titleName' => 'quals.content.links.title',
+	'itemName'  => 'quals.content.links.items',
+]);
+
+?>
 
 <section class="clearfix">
 	<h5><?= $lang->get('quals.content.clients.title'); ?></h5>
@@ -29,27 +29,12 @@
 	<?php endforeach; ?>
 </section>
 
-<section class="clearfix">
-	<h5><?= $lang->get('quals.content.samples.title'); ?></h5>
+<?php
 
-	<?php
-	$samples = $lang->get('quals.content.samples');
-	foreach ($samples as $index => $link) : ?>
-		<?php $class = $index % 2 === 0 ? 'left' : 'right'; ?>
+// Samples
+echo $app->view->fetch('partials/link-list.php', [
+	'titleName' => 'quals.content.samples.title',
+	'itemName'  => 'quals.content.samples',
+]);
 
-		<?php if ($class === 'left') : ?>
-			<div class="clearfix">
-		<?php endif; ?>
-
-			<p class="<?= $class; ?>"><?= $link; ?></p>
-
-		<?php if ($class === 'right') : ?>
-			</div>
-		<?php endif; ?>
-	<?php endforeach; ?>
-
-	<?php if (count($samples) % 2 === 1) : // Close the last tag ?>
-		</div>
-	<?php endif; ?>
-
-</section>
+?>
