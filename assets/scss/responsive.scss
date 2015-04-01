@@ -147,11 +147,22 @@
 /**
  * Cards
  */
+@media (min-width: 770px) {
+	.main {
+		.card {
+			p.blurb {
+				height: 88px;
+			}
+		}
+	}
+}
+
 @media (min-width: 770px) and (max-width: 1130px) {
 	.main {
 		width: 720px;
 
 		.card {
+
 			&:nth-of-type(3n) {
 				margin-right: 40px;
 			}

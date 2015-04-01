@@ -31,7 +31,7 @@
 		<?php foreach ($sections as $index => $section) : ?>
 			<div class="card card-<?= $section; ?>" data-dialog="<?= $section; ?>">
 				<h3><?= $lang->get( $section . '.title'); ?></h3>
-				<p><?= $lang->get( $section . '.excerpt'); ?></p>
+				<p class="blurb"><?= $lang->get( $section . '.excerpt'); ?></p>
 				<p class="readmore"><button class="<?= $index < 2 ? 'purple' : ($index < 4 ? 'red' : 'blue'); ?>" type="button"><?= $lang->get('readmore'); ?></button></p>
 			</div>
 		<?php endforeach; ?>
