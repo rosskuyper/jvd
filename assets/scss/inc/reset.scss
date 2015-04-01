@@ -135,13 +135,13 @@ input::-moz-focus-inner {
 	padding: 0;
 }
 
-::-moz-selection {
-	text-shadow: none;
-}
+// ::-moz-selection {
+// 	text-shadow: none;
+// }
 
-::selection {
-	text-shadow: none;
-}
+// ::selection {
+// 	text-shadow: none;
+// }
 
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
