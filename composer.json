@@ -5,7 +5,8 @@
 	"license": "proprietary",
 	"type": "project",
 	"require": {
-		"slim/slim": "~2.6"
+		"slim/slim": "~2.6",
+		"vlucas/phpdotenv": "~1.1"
 	},
 	"config": {
 		"preferred-install": "dist"

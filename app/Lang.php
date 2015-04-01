@@ -74,7 +74,7 @@ class Lang
 		$file = __DIR__ . '/Lang/'. $this->getLang() .'.php';
 
 		if ( ! file_exists($file) )
-			throw new \RuntimeError('Lang file not found: ' . $this->getLang());
+			throw new \RuntimeException('Lang file not found: ' . $this->getLang());
 
 		$this->langData = new LangData(include $file);
 

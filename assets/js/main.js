@@ -34,16 +34,12 @@
 				dlg.el.style.top = window.scrollY + "px";
 			};
 
-			var onClose = function(dlg){
-
-			};
-
 			var bindDialog = function(i){
 				var card      = sections.item(i);
 
 				var id        = card.attributes.getNamedItem('data-dialog');
 				var dialog    = document.getElementById('dialog-' + (id.value || id.nodeValue));
-				var dlg       = new DialogFx(dialog, {onOpenDialog : onOpen, onCloseDialog: onClose});
+				var dlg       = new DialogFx(dialog, {onOpenDialog : onOpen});
 
 				var nextIndex = i + 1 >= sections.length ? 0 : i + 1;
 				var prevIndex = i === 0 ? sections.length - 1 : i - 1;
@@ -71,6 +67,35 @@
 			for (var i = 0; i < sections.length; i++) {
 				bindDialog(i);
 			}
+		})();
+
+		/**
+		 * File Upload
+		 */
+		(function(){
+			var btn = document.getElementById("hire-me");
+			var uploader = new Resumable({
+				target: '/upload',
+				query: { uploadToken: 'asdf' }
+			});
+
+			// Resumable.js isn't supported
+			if(!uploader.support) {
+				// Tell user @todo
+				return;
+			}
+
+			uploader.assignBrowse(btn);
+			uploader.on('fileAdded', uploader.upload );
+			uploader.on('progress', function(){
+
+			});
+			uploader.on('complete', function(){
+
+			});
+			uploader.on('error', function(){
+				uploader.cancel();
+			});
 		})();
 	});
 })();

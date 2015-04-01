@@ -5,8 +5,8 @@ node_modules/
 # Composer
 vendor/
 
-# Slim app debug mode flag
-app/debug
+# App config
+app/.env
 
 # This image cannot be hosted on github
 public/css/img/hero/

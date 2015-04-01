@@ -17,7 +17,7 @@
 		<div>
 			<h1><span>Jennifer van Dorsten</span></h1>
 			<h2><?= $lang->get('subtitle'); ?></h2>
-			<p><button type="button">Hire me today</button></p>
+			<p><button type="button" id="hire-me">Hire me today</button></p>
 
 			<?php if ($lang->get('lang') === 'en') : ?>
 				<a href="/fr" class="lang-select lang-fr">Français</a>
@@ -66,6 +66,7 @@
 
 	<script src="/js/classie.js"></script>
 	<script src="/js/dialogFx.js"></script>
+	<script src="/js/resumable.js"></script>
 
 	<script src="/js/main.min.js"></script>
 	<?php if (\Slim\Slim::getInstance()->config('debug') === true) : ?>
