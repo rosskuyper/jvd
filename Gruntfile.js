@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 					'assets/js/lib/modernizr.custom.js',
 					'assets/js/lib/classie.js',
 					'assets/js/lib/dialogFx.js',
-					'assets/js/lib/flow.js'
+					'assets/js/lib/flow.min.js'
 				],
 				dest : 'public/js/lib.js'
 			}

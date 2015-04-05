@@ -73,29 +73,33 @@
 		 * File Upload
 		 */
 		(function(){
-			// var btn = document.getElementById("hire-me");
-			// var uploader = new Resumable({
-			// 	target: '/upload',
-			// 	query: { uploadToken: 'asdf' }
-			// });
+			var btn = document.getElementById("hire-me");
+			var uploader = new Flow({
+				target: '/upload',
+				chunkSize : 300 * 1024,
+				query: { uploadToken: 'asdf' }
+			});
 
-			// // Resumable.js isn't supported
-			// if(!uploader.support) {
-			// 	// Tell user @todo
-			// 	return;
-			// }
+			// Resumable.js isn't supported
+			if(!uploader.support) {
+				// Tell user @todo
+				return;
+			}
 
-			// uploader.assignBrowse(btn);
-			// uploader.on('fileAdded', uploader.upload );
-			// uploader.on('progress', function(){
+			uploader.assignBrowse(btn);
 
-			// });
-			// uploader.on('complete', function(){
+			uploader.on('filesSubmitted', uploader.upload);
+			uploader.on('progress', function(a,b,c){
+				console.log(['progress', uploader.progress()]);
+			});
+			uploader.on('complete', function(a,b,c){
+				console.log(['complete']);
+			});
+			uploader.on('error', function(a,b,c){
+				console.log(['error', a, b, c]);
+			});
 
-			// });
-			// uploader.on('error', function(){
-			// 	uploader.cancel();
-			// });
+			window.uploader = uploader;
 		})();
 	});
 })();
