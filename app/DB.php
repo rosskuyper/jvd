@@ -28,11 +28,11 @@ class DB {
 
 		// Bind params
 		foreach ($params as $index => $param) {
-			if (is_numeric($var))
+			if (is_numeric($param))
 				$type = PDO::PARAM_INT;
-			elseif (is_bool($var))
+			elseif (is_bool($param))
 				$type = PDO::PARAM_BOOL;
-			elseif (is_null($var))
+			elseif (is_null($param))
 				$type = PDO::PARAM_NULL;
 			else
 				$type = PDO::PARAM_STR;

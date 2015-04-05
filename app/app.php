@@ -77,17 +77,44 @@ $app->map('/upload', function() use ($app) {
 	);
 
 	if ($app->request->getMethod() === 'GET') {
+		// Testing for the chunk
 		if ( $uploader->isValidChunk() ) {
 			$app->halt(200, "Ok");
 		} else {
-			$app->halt(404, "Not Found");
+			$app->halt(204, "No Content");
 		}
 	} else {
-		$uploader->handleUpload();
+		// Actually uploading the chunk
+		$file = $uploader->handleUpload();
 
-		$this->app->halt(200, "Ok");
+		if ($file) {
+			$token = $app->request->params('uploadToken');
+
+			$app->db->query("
+				INSERT INTO `upload_tokens` (token, file, original, mime, created_at)
+				VALUES (?, ?, ?, ?, NOW())
+			", [$token, $file, $app->request->params('resumableFilename'), $app->request->params('resumableType')]);
+		}
+
+		$app->halt(200, "Ok");
 	}
 })->via(['GET','POST']);
+
+$app->get('/file/:id', function($id) use ($app){
+	$query = $app->db->query("SELECT * FROM `upload_tokens` WHERE file = ?", [$id]);
+
+	if ($file = $query->fetch()) {
+		// Try keep most of the original file. First replace spaces with underlines, then remove no alphanum.
+		$filename = str_replace(' ', '_', $file['original']);
+		$filename = preg_replace('/[^a-zA-Z0-9_\-\.]/', '', $filename);
+
+		$app->response->headers->set('Content-Type', $file['mime']);
+		$app->response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
+		$app->response->headers->set('X-Accel-Redirect', '/protected/' . $file['file']);
+	} else {
+		$app->halt(404, "File not found");
+	}
+});
 
 $app->get('/', $homeRoute);
 $app->get('/en', function() use($homeRoute) {return $homeRoute('en');});
