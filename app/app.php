@@ -1,5 +1,6 @@
 <?php
 namespace Jvd;
+use RossKuyper\DB\DB;
 use Dotenv;
 use Slim\Slim;
 use Jvd\Lang;
