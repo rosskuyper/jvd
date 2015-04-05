@@ -68,6 +68,7 @@ $homeRoute = function($lang = null) use ($app) {
 		'lang'      => $app->lang->getLangData(),
 		'sections'  => ['about','quals','services','client','faq','contact'],
 		'app'       => $app,
+		'favicon'   => isset($_GET['jvd']) ? 'favicon-jvd.png' : 'favicon-j.png',
 		// A util - could benefit from being put into a lib.
 		'columnise' => function($arr){
 			// ensure we get just the values

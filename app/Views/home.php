@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/css/style.css"/>
 
 	<!--[if lt IE 9]><link rel="shortcut icon" href="/favicon.ico" /><![endif]-->
-	<!--[if gte IE 9]><!--><link rel="icon" type="image/png" href="/favicon.png" /><!--<![endif]-->
+	<!--[if gte IE 9]><!--><link rel="icon" type="image/png" href="/<?php echo $favicon; ?>" /><!--<![endif]-->
 </head>
 <body>
 	<div class="hero">
