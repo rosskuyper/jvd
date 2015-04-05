@@ -22,6 +22,20 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		concat : {
+			options: {
+				separator: "\n",
+			},
+			main : {
+				src: [
+					'assets/js/lib/modernizr.custom.js',
+					'assets/js/lib/classie.js',
+					'assets/js/lib/dialogFx.js',
+					'assets/js/lib/flow.js'
+				],
+				dest : 'public/js/lib.js'
+			}
+		},
 		sass: {
 			options: {
 				loadPath: 'scss'
@@ -42,7 +56,7 @@ module.exports = function(grunt) {
 		watch: {
 			scripts: {
 				files: 'assets/js/main.js',
-				tasks: ['jshint:main', 'uglify']
+				tasks: ['jshint:main', 'uglify', 'concat']
 			},
 			styles: {
 				files: ['assets/scss/*', 'assets/scss/inc/*'],
@@ -66,7 +80,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.registerTask('default', ['watch']);
 
-	grunt.registerTask('build', ['jshint', 'uglify', 'sass']);
+	grunt.registerTask('build', ['jshint', 'uglify', 'concat', 'sass']);
 };

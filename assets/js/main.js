@@ -73,29 +73,29 @@
 		 * File Upload
 		 */
 		(function(){
-			var btn = document.getElementById("hire-me");
-			var uploader = new Resumable({
-				target: '/upload',
-				query: { uploadToken: 'asdf' }
-			});
+			// var btn = document.getElementById("hire-me");
+			// var uploader = new Resumable({
+			// 	target: '/upload',
+			// 	query: { uploadToken: 'asdf' }
+			// });
 
-			// Resumable.js isn't supported
-			if(!uploader.support) {
-				// Tell user @todo
-				return;
-			}
+			// // Resumable.js isn't supported
+			// if(!uploader.support) {
+			// 	// Tell user @todo
+			// 	return;
+			// }
 
-			uploader.assignBrowse(btn);
-			uploader.on('fileAdded', uploader.upload );
-			uploader.on('progress', function(){
+			// uploader.assignBrowse(btn);
+			// uploader.on('fileAdded', uploader.upload );
+			// uploader.on('progress', function(){
 
-			});
-			uploader.on('complete', function(){
+			// });
+			// uploader.on('complete', function(){
 
-			});
-			uploader.on('error', function(){
-				uploader.cancel();
-			});
+			// });
+			// uploader.on('error', function(){
+			// 	uploader.cancel();
+			// });
 		})();
 	});
 })();

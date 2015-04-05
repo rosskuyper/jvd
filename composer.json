@@ -7,6 +7,7 @@
 	"require": {
 		"slim/slim": "~2.6",
 		"vlucas/phpdotenv": "~1.1",
+		"flowjs/flow-php-server": "~1.0",
 		"rosskuyper/db": "dev-master"
 	},
 	"config": {

@@ -62,12 +62,7 @@
 		</div>
 	<?php endforeach; ?>
 
-	<script src="/js/modernizr.custom.js"></script>
-
-	<script src="/js/classie.js"></script>
-	<script src="/js/dialogFx.js"></script>
-	<script src="/js/resumable.js"></script>
-
+	<script src="/js/lib.js"></script>
 	<script src="/js/main.min.js"></script>
 	<?php if (\Slim\Slim::getInstance()->config('debug') === true) : ?>
 		<script src="http://localhost:35729/livereload.js"></script>
