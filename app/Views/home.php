@@ -89,11 +89,11 @@
 	</nav>
 
 	<button class="hamburger-icon" type="button">
-		<div class="hamburger">
-			<div class="menui top-menu"></div>
-			<div class="menui mid-menu"></div>
-			<div class="menui bottom-menu"></div>
-		</div>
+		<span class="hamburger">
+			<span class="menui top-menu"></span>
+			<span class="menui mid-menu"></span>
+			<span class="menui bottom-menu"></span>
+		</span>
 	</button>
 
 	<div class="contact-success" id="contact-success">
