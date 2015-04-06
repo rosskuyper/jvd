@@ -46,7 +46,7 @@
 }
 
 .hamburger-icon {
-	z-index: 999;
+	z-index: 10;
 	position: absolute;
 	background: transparent;
 	border:none;
@@ -65,7 +65,7 @@
 	font-family: inherit;
 	top: 0;
 	left:0;
-	z-index: 999;
+	z-index: 9;
 	display: none;
 	position: fixed;
 	width: 100%;

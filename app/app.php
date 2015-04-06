@@ -107,6 +107,7 @@ $app->get('/fr', function() use($homeRoute) {return $homeRoute('fr');});
  * Uploads
  */
 $app->map('/upload', function() use ($app) {
+	sleep(3);
 	$file = $app->uploadFile;
 
 	if ($app->request->getMethod() === 'GET') {

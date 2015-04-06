@@ -17,8 +17,8 @@
 			<textarea name="body" id="body" cols="30" rows="10"></textarea>
 		</div>
 	</div>
-	<div class="form-group">
-		<label for="body" class="btn-label">Attachments</label>
+	<div class="form-group form-attachments">
+		<label for="body">Attachments</label>
 		<div>
 			<button type="button" id="contact-upload" class="rounded-btn blue" data-token="<?= $uploadToken; ?>">Attach File(s)</button>
 			<input type="hidden" name="uploadToken" value="<?= $uploadToken; ?>">
@@ -30,5 +30,6 @@
 
 	<div class="form-submit">
 		<button type="submit" class="rounded-btn red">Submit</button>
+		<span id="form-msg" class="upload-msg"></span>
 	</div>
 </form>

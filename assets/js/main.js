@@ -54,6 +54,9 @@
 					toggle();
 				});
 			});
+
+			// Hire me today - open the 6th section (Contact)
+			$("#hire-me").on('click', dlgs[5].toggle.bind(dlgs[5]) );
 		})();
 
 		/**
@@ -62,6 +65,7 @@
 		(function(){
 			var $btn      = $("#contact-upload");
 			var $msg      = $("#upload-msg").msgInterface();
+			var $formMsg  = $("#form-msg").msgInterface();
 			var $list     = $("#uploaded-files");
 			var tokenAttr = $btn.attr('data-token');
 			var uploader  = new Flow({
@@ -105,7 +109,7 @@
 			});
 
 			uploader.on('complete', function(){
-				$msg.success('File(s) uploaded successfully.').clearIn(2000);
+				$msg.success('File(s) uploaded successfully.');
 			});
 
 			// If something goes wrong, let the user know.
@@ -122,26 +126,35 @@
 
 				e.preventDefault();
 
-				$.each(["email", "body"], function(index, id){
-					var $field = $("#" + id);
-					if (! $field.val()) {
+				$("#email, #body").each(function(index, id){
+					if (! $(this).val()) {
 						err = true;
-						$field.setError();
+						$(this).setError();
 					}
 				});
 
 				if (err) {
 					// Show the user that they need to fill in more fields.
+					$formMsg.err('Please fill in all the required fields (Email, Body).');
 				} else {
 					// Disable the submit btn
 					$form.find('button[type="submit"]').disable("Processing");
+					$formMsg.fadeOut();
 
 					// Post the data across
 					$.ajax({
 						url      : '/contact',
+						method   : 'POST',
+						dataType : 'json',
 						data     : $form.serialize(),
 						complete : function(){
 							$form.find('button[type="submit"]').enable();
+						},
+						success : function(data){
+							if (data && data.success) {
+								$("#dialog-contact").children('.dialog__overlay').click();
+								$("#contact-success").css('top', window.scrollY + 'px').fadeIn();
+							}
 						}
 					});
 				}
@@ -157,6 +170,15 @@
 				$(".top-menu").toggleClass("top-animate");
 				$(".mid-menu").toggleClass("mid-animate");
 				$(".bottom-menu").toggleClass("bottom-animate");
+			});
+		})();
+
+		/**
+		 * Contact success close
+		 */
+		(function(){
+			$("#contact-success").find('button').on('click', function(){
+				$("#contact-success").fadeOut();
 			});
 		})();
 	});
@@ -186,12 +208,6 @@
 			$this.info    = generateSetMessageFn('info');
 			$this.success = generateSetMessageFn('success');
 			$this.err     = generateSetMessageFn('error');
-			$this.clearIn = function(ms){
-				window.clearTimeout(timeout);
-				timeout = window.setTimeout(function(){
-					$this.fadeOut();
-				}, ms);
-			};
 
 			return $this;
 		},

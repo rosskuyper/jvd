@@ -81,6 +81,12 @@
 		</div>
 	</button>
 
+	<div class="contact-success" id="contact-success">
+		<h5>Thank you!</h5>
+		<p>We’ve successfully recieved your submission and will get back to you as soon as possible.</p>
+		<button type="button"></button>
+	</div>
+
 	<!--[if lt IE 9]><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><![endif]-->
 	<!--[if gte IE 9]><!--><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><!--<![endif]-->
 	<script src="/js/lib.js"></script>
