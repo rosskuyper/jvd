@@ -14,7 +14,7 @@ Dotenv::load(__DIR__);
 
 // Slim instance
 $app = new Slim([
-	'debug'          => file_exists(__DIR__ . "/debug"),
+	'mode'           => file_exists(__DIR__ . "/debug") ? "development" : "production",
 	'templates.path' => __DIR__ . '/Views'
 ]);
 

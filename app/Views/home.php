@@ -106,7 +106,7 @@
 	<!--[if gte IE 9]><!--><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><!--<![endif]-->
 	<script src="/js/lib.js"></script>
 	<script src="/js/main.min.js"></script>
-	<?php if ($app->config('debug') === true) : ?>
+	<?php if ($app->getMode() === "development") : ?>
 		<script src="http://localhost:35729/livereload.js"></script>
 	<?php endif; ?>
 
