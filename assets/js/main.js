@@ -135,7 +135,7 @@
 
 				if (err) {
 					// Show the user that they need to fill in more fields.
-					$formMsg.err('Please fill in all the required fields (Email, Body).');
+					$formMsg.err('Please fill in all the required fields.');
 				} else {
 					// Disable the submit btn
 					$form.find('button[type="submit"]').disable("Processing");

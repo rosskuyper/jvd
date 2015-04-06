@@ -42,6 +42,7 @@ a, a:link, a:visited {
 		bottom:40px;
 		left:50%;
 		margin-left: -12px;
+		@include animation(bouncey 1s ease-in-out infinite alternate both);
 	}
 
 	a.lang-select {
@@ -651,4 +652,14 @@ footer {
 				background-size: 152px 32px;
 			}
 		}
+}
+
+@include keyframes(bouncey) {
+	0% {
+		transform: translateY(-10px);
+	}
+
+	100% {
+		transform: translateY(10px);
+	}
 }

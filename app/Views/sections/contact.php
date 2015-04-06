@@ -1,6 +1,8 @@
+<?= $lang->paragraph('contact.content'); ?>
+
 <form action="/contact" method="post" class="contact-form" id="contact-form" enctype="application/x-www-form-urlencoded">
 	<div class="form-group">
-		<label for="email">Email address</label>
+		<label for="email">Email address*</label>
 		<div>
 			<input type="text" name="email" id="email">
 		</div>
@@ -12,7 +14,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="body">Body</label>
+		<label for="body">Body*</label>
 		<div>
 			<textarea name="body" id="body" cols="30" rows="10"></textarea>
 		</div>
