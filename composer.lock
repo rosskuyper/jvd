@@ -199,12 +199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rosskuyper/db.git",
-                "reference": "3f37a5a05f6b8c0b05600ac652f3f1fdd6fd11fc"
+                "reference": "4a89a8f54233d76d9c20d0f3ad7df87f14ae1d86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rosskuyper/db/zipball/3f37a5a05f6b8c0b05600ac652f3f1fdd6fd11fc",
-                "reference": "3f37a5a05f6b8c0b05600ac652f3f1fdd6fd11fc",
+                "url": "https://api.github.com/repos/rosskuyper/db/zipball/4a89a8f54233d76d9c20d0f3ad7df87f14ae1d86",
+                "reference": "4a89a8f54233d76d9c20d0f3ad7df87f14ae1d86",
                 "shasum": ""
             },
             "require": {
@@ -237,7 +237,7 @@
                 "php",
                 "sql"
             ],
-            "time": "2015-04-05 14:44:06"
+            "time": "2015-04-06 09:12:22"
         },
         {
             "name": "slim/slim",
