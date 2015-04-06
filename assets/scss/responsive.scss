@@ -142,6 +142,16 @@
 			display: none;
 		}
 	}
+
+	.contact-success {
+		width: auto;
+		height: auto;
+		padding:0 20px;
+		left: 20px;
+		right: 20px;
+		margin-left: 0;
+		@include border-radius(0px);
+	}
 }
 
 /**
@@ -203,5 +213,50 @@
 	.hamburger-icon {
 		margin-left: 0;
 		left:30px;
+	}
+}
+
+
+@media (max-width: 550px) {
+	.contact-form {
+		label {
+			display: none;
+		}
+
+		.form-group {
+			> div {
+				margin-left: 0;
+			}
+		}
+
+		.form-submit {
+			.rounded-btn {
+				float: none;
+			}
+
+			.upload-msg {
+				margin: 20px 0 0;
+				line-height: 26px;
+				padding: 10px 30px;
+			}
+		}
+
+		.form-attachments {
+			.rounded-btn {
+				float: none;
+			}
+
+			.upload-msg {
+				display: block;
+				text-align: center;
+				margin: 20px 0 0;
+				line-height: 20px;
+				padding: 7px 30px;
+			}
+		}
+
+		.uploaded-files {
+			margin-left: 0;
+		}
 	}
 }
