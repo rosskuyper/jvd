@@ -1,105 +1,191 @@
 (function() {
 	"use strict";
+
 	/**
 	 * Detect when the DOM is ready
 	 */
-	(function(ready){
-		function completed(){
-			document.removeEventListener( "DOMContentLoaded", completed, false );
-			window.removeEventListener( "load", completed, false );
-			ready();
-		}
-
-		// Bind to check
-		if ( document.readyState === "complete" ) {
-			// Handle it asynchronously to allow scripts the opportunity to delay ready
-			setTimeout( ready );
-		} else {
-			// Use the handy event callback
-			document.addEventListener( "DOMContentLoaded", completed, false );
-
-			// A fallback to window.onload, that will always work
-			window.addEventListener( "load", completed, false );
-		}
-	})(function(){
+	$(function(){
 		/**
 		 * Dialogs
 		 */
 		(function() {
-			var sections = document.getElementsByClassName('card');
-			var body = document.querySelector('body');
-			var dlgs = [];
+			var $sections = $('.card');
+			var $body     = $('body');
+			var dlgs      = [];
 
 			var onOpen = function(dlg){
 				dlg.el.style.top = window.scrollY + "px";
 			};
 
-			var bindDialog = function(i){
-				var card      = sections.item(i);
+			// Bind all
+			$sections.each(function(i, elem){
+				var $card     = $(elem);
+				var $dialog   = $('#dialog-' + $card.attr('data-dialog'));
+				var dlg       = new DialogFx($dialog.get(0), {onOpenDialog : onOpen});
 
-				var id        = card.attributes.getNamedItem('data-dialog');
-				var dialog    = document.getElementById('dialog-' + (id.value || id.nodeValue));
-				var dlg       = new DialogFx(dialog, {onOpenDialog : onOpen});
-
-				var nextIndex = i + 1 >= sections.length ? 0 : i + 1;
-				var prevIndex = i === 0 ? sections.length - 1 : i - 1;
+				var nextIndex = i + 1 >= $sections.length ? 0 : i + 1;
+				var prevIndex = i === 0 ? $sections.length - 1 : i - 1;
 
 				// Add to arr
 				dlgs.push(dlg);
 
 				// Toggle on card click
-				card.addEventListener( 'click', dlg.toggle.bind(dlg) );
+				$card.on( 'click', dlg.toggle.bind(dlg) );
 
 				// Close and open prev
-				dialog.querySelector('.prev').addEventListener( 'click', function(){
+				$dialog.find('.prev').on( 'click', function(){
 					dlg.toggle();
 					dlgs[prevIndex].toggle();
 				});
 
 				// Close and open next
-				dialog.querySelector('.next').addEventListener( 'click', function(){
+				$dialog.find('.next').on( 'click', function(){
 					dlg.toggle();
 					dlgs[nextIndex].toggle();
 				});
-			};
-
-			// Bind all
-			for (var i = 0; i < sections.length; i++) {
-				bindDialog(i);
-			}
+			});
 		})();
 
 		/**
 		 * File Upload
 		 */
 		(function(){
-			var btn = document.getElementById("hire-me");
-			var uploader = new Flow({
-				target: '/upload',
+			var $btn      = $("#contact-upload");
+			var $msg      = $("#upload-msg").msgInterface();
+			var $list     = $("#uploaded-files");
+			var tokenAttr = $btn.attr('data-token');
+			var uploader  = new Flow({
+				target    : '/upload',
 				chunkSize : 300 * 1024,
-				query: { uploadToken: 'asdf' }
+				query     : { uploadToken : tokenAttr }
 			});
 
 			// Resumable.js isn't supported
-			if(!uploader.support) {
-				// Tell user @todo
-				return;
+			if(! uploader.support ) {
+				// Hide the attach file button. They can email instead.
+				$btn.closest('.form-group').hide();
 			}
 
-			uploader.assignBrowse(btn);
+			// Assign the button to open the browse window
+			uploader.assignBrowse($btn.get(0));
 
+			// Auto upload when a user selects a file
 			uploader.on('filesSubmitted', uploader.upload);
-			uploader.on('progress', function(a,b,c){
-				console.log(['progress', uploader.progress()]);
-			});
-			uploader.on('complete', function(a,b,c){
-				console.log(['complete']);
-			});
-			uploader.on('error', function(a,b,c){
-				console.log(['error', a, b, c]);
+
+			// Show the user the progress
+			uploader.on('progress', function(){
+				var prog = uploader.progress();
+
+				if (prog === 0) {
+					$msg.info('Uploading...');
+				} else if (prog === 1) {
+					$msg.info('Processing');
+				} else {
+					$msg.info('Uploading: ' + Math.round(prog * 100) + '%' );
+				}
 			});
 
-			window.uploader = uploader;
+			// Once the last bit is uploaded show the file
+			uploader.on('fileSuccess', function(file){
+				if ($list.is(':hidden')) {
+					$list.slideDown();
+				}
+
+				$("<li />").text(file.name).hide().appendTo($list).slideDown();
+			});
+
+			uploader.on('complete', function(){
+				$msg.success('File(s) uploaded successfully.').clearIn(2000);
+			});
+
+			// If something goes wrong, let the user know.
+			uploader.on('error', function(){
+				$msg.err("We experienced an error uploading your file, please email us at jvdtranslations@gmail.com.");
+				uploader.cancel(); // End all other uploads.
+			});
+
+			/**
+			 * Submit the final form
+			 */
+			$("#contact-form").submit(function(e){
+				var $form = $(this), err = false;
+
+				e.preventDefault();
+
+				$.each(["email", "body"], function(index, id){
+					var $field = $("#" + id);
+					if (! $field.val()) {
+						err = true;
+						$field.setError();
+					}
+				});
+
+				if (err) {
+					// Show the user that they need to fill in more fields.
+				} else {
+					// Post the data across
+					$form.find('button[type="submit"]').disable("Processing");
+
+					$.post('/contact', $form.serialize(), function(data){
+						console.log(data);
+
+						$form.find('button[type="submit"]').enable();
+					}, 'text');
+				}
+			});
 		})();
+	});
+
+	/**
+	 * jQuery extensions
+	 */
+	$.fn.extend({
+		msgInterface : function(){
+			var $this             = this;
+			var originalClassName = $this.attr('class');
+			var timeout           = 0;
+
+			// Curry a function used to set messages
+			var generateSetMessageFn = function(type){
+				window.clearTimeout(timeout);
+				type = 'msg-' + type;
+
+				return function(message){
+					return $this.text(message)
+					            .attr('class', originalClassName)
+					            .addClass(type)
+					            .show();
+				};
+			};
+
+			$this.info    = generateSetMessageFn('info');
+			$this.success = generateSetMessageFn('success');
+			$this.err     = generateSetMessageFn('error');
+			$this.clearIn = function(ms){
+				window.clearTimeout(timeout);
+				timeout = window.setTimeout(function(){
+					$this.fadeOut();
+				}, ms);
+			};
+
+			return $this;
+		},
+		disable : function(text){
+			return this.data('activeText', this.text())
+			           .prop('disabled', true)
+			           .text(text);
+		},
+		enable : function(){
+			return this.prop('disabled', false)
+			           .text(this.data('activeText'));
+		},
+		setError : function() {
+			var $this = this;
+			return $this.addClass('error').on('keypress', function(){
+				if ($this.val()) {
+					$this.removeClass('error').off('keypress');
+				}
+			});
+		}
 	});
 })();

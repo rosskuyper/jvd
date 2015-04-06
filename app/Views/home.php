@@ -20,7 +20,7 @@
 		<div>
 			<h1><span>Jennifer van Dorsten</span></h1>
 			<h2><?= $lang->get('subtitle'); ?></h2>
-			<p><button type="button" id="hire-me">Hire me today</button></p>
+			<p><button type="button" id="hire-me" class="rounded-btn red">Hire me today</button></p>
 
 			<?php if ($lang->get('lang') === 'en') : ?>
 				<a href="/fr" class="lang-select lang-fr">Français</a>
@@ -65,6 +65,8 @@
 		</div>
 	<?php endforeach; ?>
 
+	<!--[if lt IE 9]><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><![endif]-->
+	<!--[if gte IE 9]><!--><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><!--<![endif]-->
 	<script src="/js/lib.js"></script>
 	<script src="/js/main.min.js"></script>
 	<?php if (\Slim\Slim::getInstance()->config('debug') === true) : ?>

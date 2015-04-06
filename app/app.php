@@ -54,6 +54,10 @@ $app->randomStr = function(){
 	return substr(str_replace(array('/', '+', '='), '', base64_encode($bytes)), 0, $length);
 };
 
+$app->mailgun = function() {
+	return new \Mailgun\Mailgun( getenv('MAILGUN_API_KEY') );
+};
+
 /**
  * ---------
  * Routes
@@ -65,11 +69,12 @@ $homeRoute = function($lang = null) use ($app) {
 		$app->lang->setLang($lang);
 
 	$app->render('home.php', [
-		'lang'      => $app->lang->getLangData(),
-		'sections'  => ['about','quals','services','client','faq','contact'],
-		'app'       => $app,
+		'lang'        => $app->lang->getLangData(),
+		'sections'    => ['about','quals','services','client','faq','contact'],
+		'app'         => $app,
+		'uploadToken' => $app->randomStr,
 		// A util - could benefit from being put into a lib.
-		'columnise' => function($arr){
+		'columnise'   => function($arr){
 			// ensure we get just the values
 			$arr        = array_values($arr);
 			$count      = count($arr);
@@ -97,7 +102,9 @@ $app->get('/', $homeRoute);
 $app->get('/en', function() use($homeRoute) {return $homeRoute('en');});
 $app->get('/fr', function() use($homeRoute) {return $homeRoute('fr');});
 
-// Uploads
+/**
+ * Uploads
+ */
 $app->map('/upload', function() use ($app) {
 	$file = $app->uploadFile;
 
@@ -114,7 +121,7 @@ $app->map('/upload', function() use ($app) {
 			$file->saveChunk();
 		} else {
 			// error, invalid chunk upload request, retry
-			$app->halt(400, var_export());
+			$app->halt(400);
 		}
 	}
 
@@ -154,9 +161,57 @@ $app->map('/upload', function() use ($app) {
 			$app->halt(500);
 		}
 	}
-
 	// This is not a final chunk, continue to upload
 })->via(['GET','POST']);
+
+/**
+ * Contact details
+ */
+$app->post('/contact', function() use($app){
+	// Minimal input validation - will adjust if spam becomes a problem.
+	$email   = $app->request->params('email');
+	$subject = $app->request->params('subject');
+	$body    = $app->request->params('body');
+
+	// This shouldn't happen if the user has JS enabled. If they don't they've
+	// submitted via some odd method (the form is not visible without JS)
+	if (empty($email) || empty($body)) {
+		echo json_encode(['success' => false]);
+		return;
+	}
+
+	// Grab the files that were uploaded
+	$db      = $app->db;
+	$token   = $app->request->params('uploadToken');
+	$files   = $db->get("SELECT * FROM `uploads` WHERE token = ?", $token);
+	$baseUrl = $app->request->getUrl();
+
+	// Create a url for each file
+	$files = array_map(function($file) use ($app, $baseUrl){
+		$file['url'] = $baseUrl . $app->urlFor('file', ['id' => $file['file']]);
+
+		return $file;
+	}, $files);
+
+	$content = $app->view->fetch('partials/contact.email.php', [
+		'email'   => $email,
+		'subject' => $subject,
+		'body'    => $body,
+		'files'   => $files,
+	]);
+
+	// Init the Mailgun API
+	$mg = $app->mailgun;
+
+	$mg->sendMessage(getenv('MAILGUN_DOMAIN'), array(
+		'from'    => getenv('MAILGUN_FROM'),
+		'to'      => 'rosskuyper@gmail.com',
+		'subject' => 'New contact from the JVD website',
+		'text'    => $content
+	));
+
+	echo json_encode(['success' => true]);
+});
 
 /**
  * Downloads
@@ -175,6 +230,6 @@ $app->get('/file/:id', function($id) use ($app){
 	} else {
 		$app->halt(404, "File not found");
 	}
-});
+})->name('file');
 
 $app->run();
