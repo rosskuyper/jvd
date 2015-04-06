@@ -48,8 +48,17 @@
 		}
 
 		.dialog__content {
-			padding-left: 40px;
-			padding-right: 40px;
+			padding:140px 40px 90px;
+			background-position: 50% 70px;
+		}
+
+		.tools {
+			right: 50%;
+			margin-right: -66px;
+
+			&.tools-bot {
+				display: block;
+			}
 		}
 	}
 }

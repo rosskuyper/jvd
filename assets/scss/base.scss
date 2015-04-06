@@ -410,6 +410,12 @@ footer {
 		top: 20px;
 		right: 20px;
 
+		&.tools-bot {
+			display: none;
+			top: auto;
+			bottom: 20px;
+		}
+
 		button {
 			display: block;
 			border:1px solid #E8E8E8;
@@ -570,7 +576,6 @@ footer {
 	}
 
 	.uploaded-files {
-		display: none;
 		margin: 0 0 20px 170px;
 		color: #312C33;
 		font-size: 14px;

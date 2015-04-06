@@ -74,6 +74,14 @@
 				query     : { uploadToken : tokenAttr }
 			});
 
+			var msgs = {
+				formError     : $formMsg.attr('data-error'),
+				uploadProc    : $btn.attr('data-proc'),
+				uploadErr     : $btn.attr('data-error'),
+				uploadSuccess : $btn.attr('data-success'),
+				uploadBusy    : $btn.attr('data-busy')
+			};
+
 			// Resumable.js isn't supported
 			if(! uploader.support ) {
 				// Hide the attach file button. They can email instead.
@@ -91,11 +99,11 @@
 				var prog = uploader.progress();
 
 				if (prog === 0) {
-					$msg.info('Uploading...');
+					$msg.info(msgs.uploadBusy + '...');
 				} else if (prog === 1) {
-					$msg.info('Processing');
+					$msg.info(msgs.uploadProc);
 				} else {
-					$msg.info('Uploading: ' + Math.round(prog * 100) + '%' );
+					$msg.info(msgs.uploadBusy + ': ' + Math.round(prog * 100) + '%' );
 				}
 			});
 
@@ -109,12 +117,12 @@
 			});
 
 			uploader.on('complete', function(){
-				$msg.success('File(s) uploaded successfully.');
+				$msg.success(msgs.uploadSuccess);
 			});
 
 			// If something goes wrong, let the user know.
 			uploader.on('error', function(){
-				$msg.err("We experienced an error uploading your file, please email us at jvdtranslations@gmail.com.");
+				$msg.err(msgs.uploadErr);
 				uploader.cancel(); // End all other uploads.
 			});
 
@@ -135,10 +143,10 @@
 
 				if (err) {
 					// Show the user that they need to fill in more fields.
-					$formMsg.err('Please fill in all the required fields.');
+					$formMsg.err(msgs.formError);
 				} else {
 					// Disable the submit btn
-					$form.find('button[type="submit"]').disable("Processing");
+					$form.find('button[type="submit"]').disable(msgs.uploadProc);
 					$formMsg.fadeOut();
 
 					// Post the data across

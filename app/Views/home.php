@@ -61,6 +61,11 @@
 					<button type="button" class="next"></button>
 					<button type="button" class="prev"></button>
 				</div>
+				<div class="tools tools-bot">
+					<button type="button" class="close" data-dialog-close></button>
+					<button type="button" class="next"></button>
+					<button type="button" class="prev"></button>
+				</div>
 			</div>
 		</div>
 	<?php endforeach; ?>

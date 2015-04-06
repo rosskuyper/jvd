@@ -206,7 +206,7 @@ $app->post('/contact', function() use($app){
 
 	$mg->sendMessage(getenv('MAILGUN_DOMAIN'), array(
 		'from'    => getenv('MAILGUN_FROM'),
-		'to'      => 'rosskuyper@gmail.com',
+		'to'      => getenv('CONTACT_EMAIL'),
 		'subject' => 'New contact from the JVD website',
 		'text'    => $content
 	));
