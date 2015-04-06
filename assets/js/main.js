@@ -12,6 +12,7 @@
 			var $sections = $('.card');
 			var $body     = $('body');
 			var dlgs      = [];
+			var $menuIcon = $(".hamburger-icon");
 
 			var onOpen = function(dlg){
 				dlg.el.style.top = window.scrollY + "px";
@@ -42,6 +43,15 @@
 				$dialog.find('.next').on( 'click', function(){
 					dlg.toggle();
 					dlgs[nextIndex].toggle();
+				});
+			});
+
+			// Assumes mobile menu is in the same order as sections / dialogues (it is)
+			$('.mobilenav').find('button').each(function(i){
+				var toggle = dlgs[i].toggle.bind(dlgs[i]);
+				$(this).on( 'click', function(){
+					$menuIcon.click();
+					toggle();
 				});
 			});
 		})();
@@ -123,15 +133,30 @@
 				if (err) {
 					// Show the user that they need to fill in more fields.
 				} else {
-					// Post the data across
+					// Disable the submit btn
 					$form.find('button[type="submit"]').disable("Processing");
 
-					$.post('/contact', $form.serialize(), function(data){
-						console.log(data);
-
-						$form.find('button[type="submit"]').enable();
-					}, 'text');
+					// Post the data across
+					$.ajax({
+						url      : '/contact',
+						data     : $form.serialize(),
+						complete : function(){
+							$form.find('button[type="submit"]').enable();
+						}
+					});
 				}
+			});
+		})();
+
+		/**
+		 * Responsive menu - Hamburgler
+		 */
+		(function(){
+			$(".hamburger-icon").click(function () {
+				$(".mobilenav").fadeToggle(500);
+				$(".top-menu").toggleClass("top-animate");
+				$(".mid-menu").toggleClass("mid-animate");
+				$(".bottom-menu").toggleClass("bottom-animate");
 			});
 		})();
 	});

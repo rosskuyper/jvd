@@ -65,11 +65,27 @@
 		</div>
 	<?php endforeach; ?>
 
+	<nav id="mobile-site-navigation" class="mobilenav" role="navigation">
+		<ul>
+			<?php foreach ($sections as $index => $section) : ?>
+				<li><button type="button" data-dialog="<?= $section; ?>"><?= $lang->get($section . '.title'); ?></button></li>
+			<?php endforeach; ?>
+		</ul>
+	</nav>
+
+	<button class="hamburger-icon" type="button">
+		<div class="hamburger">
+			<div class="menui top-menu"></div>
+			<div class="menui mid-menu"></div>
+			<div class="menui bottom-menu"></div>
+		</div>
+	</button>
+
 	<!--[if lt IE 9]><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><![endif]-->
 	<!--[if gte IE 9]><!--><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><!--<![endif]-->
 	<script src="/js/lib.js"></script>
 	<script src="/js/main.min.js"></script>
-	<?php if (\Slim\Slim::getInstance()->config('debug') === true) : ?>
+	<?php if ($app->config('debug') === true) : ?>
 		<script src="http://localhost:35729/livereload.js"></script>
 	<?php endif; ?>
 </body>
