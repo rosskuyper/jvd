@@ -161,7 +161,8 @@
 						success : function(data){
 							if (data && data.success) {
 								$("#dialog-contact").children('.dialog__overlay').click();
-								$("#contact-success").css('top', window.scrollY + 'px').fadeIn();
+								$("#contact-success").fadeIn();
+								$("body,html").animate({scrollTop:0});
 							}
 						}
 					});

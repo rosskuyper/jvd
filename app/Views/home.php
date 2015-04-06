@@ -14,13 +14,23 @@
 
 	<!--[if lt IE 9]><link rel="shortcut icon" href="/favicon.ico" /><![endif]-->
 	<!--[if gte IE 9]><!--><link rel="icon" type="image/png" href="/favicon.png" /><!--<![endif]-->
+
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="JVD Translations" />
+	<meta property="og:description" content="<?= $lang->get('subtitle'); ?>" />
+	<meta property="og:url" content="<?= $app->request->getUrl(); ?>/" />
+	<meta property="og:site_name" content="JVD Translations" />
+	<meta property="og:image" content="<?= $app->request->getUrl(); ?>/img/JVDTranslations1200x630.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:locale" content="en_US" />
 </head>
 <body>
 	<div class="hero">
 		<div>
 			<h1><span>Jennifer van Dorsten</span></h1>
 			<h2><?= $lang->get('subtitle'); ?></h2>
-			<p><button type="button" id="hire-me" class="rounded-btn red">Hire me today</button></p>
+			<p><button type="button" id="hire-me" class="rounded-btn red"><?= $lang->get('hireme'); ?></button></p>
 
 			<?php if ($lang->get('lang') === 'en') : ?>
 				<a href="/fr" class="lang-select lang-fr">Français</a>
@@ -41,8 +51,8 @@
 	</div>
 
 	<footer>
-		<p>Copyright <?php echo date('Y'); ?> - JVD Translations</p>
-		<p class="creds">Photo by <a href="http://www.ericnathan.com/" target="_blank">Eric Nathan</a> and Icons by <a target="_blank" href="http://icons8.com/">Icons8</a></p>
+		<p><?= $lang->get('copyright'); ?> <?= date('Y'); ?> - JVD Translations</p>
+		<p class="creds"><?= $lang->get('creds'); ?></p>
 		<p><a class="piandcake" href="http://piandcake.com" target="_blank" title="piandcake"></a></p>
 	</footer>
 
@@ -87,8 +97,8 @@
 	</button>
 
 	<div class="contact-success" id="contact-success">
-		<h5>Thank you!</h5>
-		<p>We’ve successfully recieved your submission and will get back to you as soon as possible.</p>
+		<h5><?= $lang->get('thanks.title'); ?></h5>
+		<p><?= $lang->get('thanks.content'); ?></p>
 		<button type="button"></button>
 	</div>
 
