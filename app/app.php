@@ -5,12 +5,13 @@ use Dotenv;
 use Slim\Slim;
 use Jvd\Lang;
 
-// Env
-Dotenv::load(__DIR__);
-
 /**
  * Author: Ross Kuyper <rosskuyper@gmail.com>
  */
+
+// Env
+Dotenv::load(__DIR__);
+
 // Slim instance
 $app = new Slim([
 	'debug'          => file_exists(__DIR__ . "/debug"),
@@ -34,9 +35,7 @@ $app->container->singleton('db', function () use ($app) {
 $app->uploadFile = function() {
 	$config = new \Flow\Config();
 	$config->setTempDir( getenv('CHUNK_DIR') );
-	$file = new \Flow\File($config);
-
-	return $file;
+	return new \Flow\File($config);
 };
 
 // Random Str Generator (fixed length)
@@ -54,6 +53,7 @@ $app->randomStr = function(){
 	return substr(str_replace(array('/', '+', '='), '', base64_encode($bytes)), 0, $length);
 };
 
+// Mailgun API
 $app->mailgun = function() {
 	return new \Mailgun\Mailgun( getenv('MAILGUN_API_KEY') );
 };
@@ -65,8 +65,9 @@ $app->mailgun = function() {
  * Mostly a one page "app"
  */
 $homeRoute = function($lang = null) use ($app) {
-	if (! is_null($lang) )
+	if (! is_null($lang) ) {
 		$app->lang->setLang($lang);
+	}
 
 	$app->render('home.php', [
 		'lang'        => $app->lang->getLangData(),
