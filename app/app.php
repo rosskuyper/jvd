@@ -67,8 +67,6 @@ $app->mailgun = function() {
 $homeRoute = function($lang = null) use ($app) {
 	if (! is_null($lang) ) {
 		$app->lang->setLang($lang);
-	} else {
-		$app->lang->setLang('en');
 	}
 
 	$app->render('home.php', [

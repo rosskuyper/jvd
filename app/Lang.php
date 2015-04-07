@@ -53,8 +53,9 @@ class Lang
 	 * Manually set the lang
 	 */
 	public function setLang($lang){
-		if ($this->isSupported($lang))
+		if ($this->isSupported($lang)) {
 			$this->lang = $lang;
+		}
 	}
 
 	/**
@@ -98,7 +99,7 @@ class Lang
 		}
 
 		if (is_null($this->lang) || ! $this->isSupported($this->lang)) {
-			$this->lang = $this->default;
+			$this->lang = $this->defaultLang;
 		}
 
 		return $this->lang;
