@@ -10,7 +10,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:700italic,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/css/style.css"/>
+	<link rel="stylesheet" href="/css/style.css?v=1.0.0"/>
 
 	<!--[if lt IE 9]><link rel="shortcut icon" href="/favicon.ico" /><![endif]-->
 	<!--[if gte IE 9]><!--><link rel="icon" type="image/png" href="/favicon.png" /><!--<![endif]-->
@@ -104,8 +104,8 @@
 
 	<!--[if lt IE 9]><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><![endif]-->
 	<!--[if gte IE 9]><!--><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><!--<![endif]-->
-	<script src="/js/lib.js"></script>
-	<script src="/js/main.min.js"></script>
+	<script src="/js/lib.js?v=1.0.0"></script>
+	<script src="/js/main.min.js?v=1.0.0"></script>
 	<?php if ($app->getMode() === "development") : ?>
 		<script src="http://localhost:35729/livereload.js"></script>
 	<?php endif; ?>
