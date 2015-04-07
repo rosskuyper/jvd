@@ -596,6 +596,7 @@ footer {
 		color: #FFFFFF;
 		font-size: 24px;
 		@include quest;
+		@include std-transition(color);
 
 		&:hover {
 			color: #ED8E7B;

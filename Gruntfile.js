@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 			},
 			main: {
 				options: {
-					sourceMap: true
+					sourceMap: false
 				},
 				files: {
 					'public/js/main.min.js': 'assets/js/main.js'
@@ -38,7 +38,8 @@ module.exports = function(grunt) {
 		},
 		sass: {
 			options: {
-				loadPath: 'scss'
+				loadPath: 'scss',
+				sourcemap: 'none'
 			},
 			main: {
 				options: {
