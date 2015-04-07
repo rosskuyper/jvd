@@ -13,3 +13,10 @@
 @mixin open() {
 	font-family: 'Open Sans', sans-serif;
 }
+
+@mixin placeholder-color($color){
+	&::-webkit-input-placeholder {color:$color;}
+	&::-moz-placeholder {color:$color;}
+	&:-moz-placeholder {color:$color;}
+	&:-ms-placeholder {color:$color;}
+}

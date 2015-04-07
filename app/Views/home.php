@@ -2,7 +2,7 @@
 <html lang="en-US" class="no-js">
 <head>
 	<meta charset="UTF-8">
-	<title>JVD Translations</title>
+	<title>JvD Translations</title>
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,10 +16,10 @@
 	<!--[if gte IE 9]><!--><link rel="icon" type="image/png" href="/favicon.png" /><!--<![endif]-->
 
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="JVD Translations" />
+	<meta property="og:title" content="JvD Translations" />
 	<meta property="og:description" content="<?= $lang->get('subtitle'); ?>" />
 	<meta property="og:url" content="<?= $app->request->getUrl(); ?>/" />
-	<meta property="og:site_name" content="JVD Translations" />
+	<meta property="og:site_name" content="JvD Translations" />
 	<meta property="og:image" content="<?= $app->request->getUrl(); ?>/img/JVDTranslations1200x630.jpg" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
@@ -51,7 +51,7 @@
 	</div>
 
 	<footer>
-		<p><?= $lang->get('copyright'); ?> <?= date('Y'); ?> - JVD Translations</p>
+		<p><?= $lang->get('copyright'); ?> <?= date('Y'); ?> - JvD Translations</p>
 		<p class="creds"><?= $lang->get('creds'); ?></p>
 		<p><a class="piandcake" href="http://piandcake.com" target="_blank" title="piandcake"></a></p>
 	</footer>

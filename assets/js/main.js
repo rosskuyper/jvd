@@ -111,10 +111,6 @@
 
 			// Once the last bit is uploaded show the file
 			uploader.on('fileSuccess', function(file){
-				if ($list.is(':hidden')) {
-					$list.slideDown();
-				}
-
 				$("<li />").text(file.name).hide().appendTo($list).slideDown();
 			});
 
@@ -163,7 +159,14 @@
 						success : function(data){
 							if (data && data.success) {
 								$("#dialog-contact").children('.dialog__overlay').click();
-								$("#contact-success").fadeIn();
+								$("#contact-success").fadeIn(function(){
+									// Clear uploader
+									uploader.cancel();
+									$list.empty();
+									$form.find('input,textarea').val('');
+									$formMsg.hide();
+									$msg.hide();
+								});
 								$("body,html").animate({scrollTop:0});
 							}
 						}

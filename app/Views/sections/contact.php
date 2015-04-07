@@ -4,19 +4,19 @@
 	<div class="form-group">
 		<label for="email"><?= $lang->get('contact.label.email'); ?>*</label>
 		<div>
-			<input type="text" name="email" id="email">
+			<input type="text" name="email" id="email" placeholder="<?= $lang->get('contact.label.email'); ?>*">
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="subject"><?= $lang->get('contact.label.subject'); ?></label>
 		<div>
-			<input type="text" name="subject" id="subject">
+			<input type="text" name="subject" id="subject" placeholder="<?= $lang->get('contact.label.subject'); ?>">
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="body"><?= $lang->get('contact.label.body'); ?>*</label>
 		<div>
-			<textarea name="body" id="body" cols="30" rows="10"></textarea>
+			<textarea name="body" id="body" cols="30" rows="10" placeholder="<?= $lang->get('contact.label.body'); ?>*"></textarea>
 		</div>
 	</div>
 	<div class="form-group form-attachments">

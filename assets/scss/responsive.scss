@@ -228,6 +228,10 @@
 
 @media (max-width: 550px) {
 	.contact-form {
+		input, textarea {
+			@include placeholder-color(tint(#8A8A8A, 30%));
+		}
+
 		label {
 			display: none;
 		}
