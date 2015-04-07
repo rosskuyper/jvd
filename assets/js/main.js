@@ -26,22 +26,24 @@
 
 				var nextIndex = i + 1 >= $sections.length ? 0 : i + 1;
 				var prevIndex = i === 0 ? $sections.length - 1 : i - 1;
+				var toggle    = dlg.toggle.bind(dlg);
 
 				// Add to arr
 				dlgs.push(dlg);
 
 				// Toggle on card click
-				$card.on( 'click', dlg.toggle.bind(dlg) );
+				$card.on( 'click', toggle );
+				$dialog.find('.tools-bot').find('.close').on( 'click', toggle );
 
 				// Close and open prev
 				$dialog.find('.prev').on( 'click', function(){
-					dlg.toggle();
+					toggle();
 					dlgs[prevIndex].toggle();
 				});
 
 				// Close and open next
 				$dialog.find('.next').on( 'click', function(){
-					dlg.toggle();
+					toggle();
 					dlgs[nextIndex].toggle();
 				});
 			});

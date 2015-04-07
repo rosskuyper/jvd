@@ -515,6 +515,8 @@ footer {
 
 	.form-attachments {
 		padding-top: 10px;
+		position: relative;
+		overflow: hidden;
 
 		label {
 			line-height: 34px;
@@ -592,8 +594,12 @@ footer {
 		border: none;
 		background:transparent;
 		color: #FFFFFF;
-		font-size: 16px;
+		font-size: 24px;
 		@include quest;
+
+		&:hover {
+			color: #ED8E7B;
+		}
 	}
 }
 
@@ -647,6 +653,15 @@ footer {
 			.card-client:after {background-image: url('img/icon/clients@2x.png');}
 			.card-faq:after {background-image: url('img/icon/faq@2x.png');}
 			.card-contact:after {background-image: url('img/icon/contact@2x.png');}
+		}
+
+		.dialog {
+			&.about .dialog__content {background-image: url('img/icon/about@2x.png');}
+			&.quals .dialog__content {background-image: url('img/icon/quals@2x.png');}
+			&.services .dialog__content {background-image: url('img/icon/services@2x.png');}
+			&.client .dialog__content {background-image: url('img/icon/clients@2x.png');}
+			&.faq .dialog__content {background-image: url('img/icon/faq@2x.png');}
+			&.contact .dialog__content {background-image: url('img/icon/contact@2x.png');}
 		}
 
 		footer {
