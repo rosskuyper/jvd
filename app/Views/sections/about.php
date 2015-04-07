@@ -1,6 +1,5 @@
-<div class="left">
-	<?= $lang->paragraph('about.content.left'); ?>
-</div>
-<div class="right">
-	<?= $lang->paragraph('about.content.right'); ?>
-</div>
+<section class="clearfix">
+	<div class="full-row">
+		<?= $lang->paragraph('about.content'); ?>
+	</div>
+</section>

@@ -1,17 +1,14 @@
-<?php
-
-// Main services
-echo $app->view->fetch('partials/dual-columns.php', [
-	'titleName' => 'services.translation.title',
-	'itemName'  => 'services.translation.content',
-]);
-
-?>
+<section class="clearfix">
+	<h5><?= $lang->get('services.translation.title'); ?></h5>
+	<div class="full-row">
+		<p><?= $lang->get('services.translation.content'); ?></p>
+	</div>
+</section>
 
 <section class="clearfix">
-	<div class="left">
-		<h5><?= $lang->get('services.pm.title'); ?></h5>
-		<?= $lang->paragraph('services.pm.content'); ?>
+	<h5><?= $lang->get('services.pm.title'); ?></h5>
+	<div class="full-row">
+		<p><?= $lang->get('services.pm.content'); ?></p>
 	</div>
 </section>
 

@@ -1,12 +1,10 @@
-<?php
 
-// External links
-echo $app->view->fetch('partials/dual-columns.php', [
-	'titleName' => 'quals.quals.title',
-	'itemName'  => 'quals.quals.content',
-]);
-
-?>
+<section class="clearfix">
+	<h5><?= $lang->get('quals.quals.title'); ?></h5>
+	<div class="full-row">
+		<?= $lang->paragraph('quals.quals.content'); ?>
+	</div>
+</section>
 
 <section class="clearfix">
 	<div class="left">
@@ -24,13 +22,14 @@ echo $app->view->fetch('partials/dual-columns.php', [
 	</div>
 </section>
 
-<?php
+<section class="clearfix">
+	<h5><?= $lang->get('quals.clients.title'); ?></h5>
+	<div class="full-row">
+		<p><?= $lang->get('quals.clients.content'); ?></p>
+	</div>
+</section>
 
-// Clients
-echo $app->view->fetch('partials/dual-columns.php', [
-	'titleName' => 'quals.clients.title',
-	'itemName'  => 'quals.clients.content',
-]);
+<?php
 
 // Samples
 echo $app->view->fetch('partials/link-list.php', [
