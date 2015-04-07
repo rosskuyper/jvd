@@ -7,6 +7,7 @@ vendor/
 
 # App config
 app/.env
+app/debug
 
 # This image cannot be hosted on github
 public/css/img/hero/
