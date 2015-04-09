@@ -10,7 +10,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:700italic,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/css/style.css?v=1.0.0"/>
+	<link rel="stylesheet" href="/css/style.css?v=1.0.1"/>
 
 	<!--[if lt IE 9]><link rel="shortcut icon" href="/favicon.ico" /><![endif]-->
 	<!--[if gte IE 9]><!--><link rel="icon" type="image/png" href="/favicon.png" /><!--<![endif]-->
